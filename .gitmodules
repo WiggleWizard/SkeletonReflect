@@ -1,0 +1,9 @@
+[submodule "thirdparty/EABase/repo"]
+	path = thirdparty/EABase/repo
+	url = https://github.com/electronicarts/EABase.git
+[submodule "thirdparty/EASTL/repo"]
+	path = thirdparty/EASTL/repo
+	url = https://github.com/electronicarts/EASTL.git
+[submodule "thirdparty/spdlog/repo"]
+	path = thirdparty/spdlog/repo
+	url = https://github.com/gabime/spdlog.git
