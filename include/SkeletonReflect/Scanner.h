@@ -7,7 +7,7 @@
 #include <EASTL/list.h>
 #include <EASTL/hash_map.h>
 
-#include "SkeletonHeaderTool/Logging.h"
+#include "Logging.h"
 
 
 class Scanner

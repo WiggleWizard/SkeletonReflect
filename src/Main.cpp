@@ -1,9 +1,9 @@
-#include "SkeletonHeaderTool/SourceVisitor.h"
+#include "SkeletonReflect/SourceVisitor.h"
 
 #include <spdlog/spdlog.h>
 #include <EASTL/string.h>
 
-#include "SkeletonHeaderTool/Logging.h"
+#include "SkeletonReflect/Logging.h"
 LOG_DECL(logger, Main);
 
 
