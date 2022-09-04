@@ -18,6 +18,7 @@ public:
 	~ScriptEngineWren();
 
 	void Initialize() override;
+	ea::string GetFullScript() const override;
 	ea::hash_map<ea::string, int> GetUserDefinedTokenTypes() override;
 
 private:

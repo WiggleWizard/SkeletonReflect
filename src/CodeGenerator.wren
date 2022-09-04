@@ -1,10 +1,11 @@
+
+
 var CK_COOL_CUSTOM_MACRO = 5
 var CK_COOL_CUSTOM_MACRO2 = 6
 
 class SkeletonReflect {
 	static getCustomKeywords() {
-		var s = CK_COOL_CUSTOM_MACRO.toString
-		System.print("Hello World " + s)
+		System.print("Hello World " + TOK_END_OF_CUSTOM_TYPES.toString)
 
 		return [
 			{
@@ -17,5 +18,9 @@ class SkeletonReflect {
 			},
 		]
 		
+	}
+
+	static generate() {
+
 	}
 }

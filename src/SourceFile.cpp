@@ -2,7 +2,6 @@
 
 #include "SkeletonReflect/Scanner.h"
 
-#include <iostream>
 #include <sstream>
 #include <fstream>
 
@@ -13,7 +12,7 @@ SourceFile::SourceFile(const eastl::string& filepath)
 	: _filepath(filepath)
 {
 	// Read full file into memory
-	std::ifstream fin(filepath.c_str());
+	const std::ifstream fin(filepath.c_str());
 
 	std::stringstream buffer;
 	buffer << fin.rdbuf();

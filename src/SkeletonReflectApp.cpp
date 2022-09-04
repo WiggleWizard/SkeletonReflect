@@ -19,6 +19,9 @@ NAMESPACE_BEGIN(SkeletonReflect)
 
 int Application::Main(int argCount, char* args[])
 {
+	// Create script engine to make it available ASAP
+	_scriptEngine = availableScriptEngines[_config.scriptEngine]();
+
 	// Set up the arg parser first so we can then figure out any configuration things
 	SetupArgParser();
 	const int configureResult = ConfigureFromArgs(argCount, args);
@@ -28,7 +31,6 @@ int Application::Main(int argCount, char* args[])
 	}
 
 	// Initialize the scripting engine
-	_scriptEngine = availableScriptEngines[_config.scriptEngine]();
 	_scriptEngine->Initialize();
 
 	ea::shared_ptr<SourceVisitor> visitor = ea::make_shared<SourceVisitor>("tests");
@@ -47,6 +49,13 @@ int Application::ConfigureFromArgs(int argCount, char* args[])
 	try
 	{
 		_argParser->parse_args(argCount, args);
+
+		// Dump out script to stdout then exit
+		if(_argParser->get<bool>("--dumpscript") == true)
+		{
+			printf("%s", _scriptEngine->GetFullScript().c_str());
+			return -1;
+		}
 
 		// Set stdout log format
 		if(_argParser->get<bool>("--standalone") == false)
@@ -132,6 +141,22 @@ void Application::SetupArgParser()
 	_argParser->add_argument("--script")
 		.help("Path to the programming script file. Will default to internal script files if not set")
 		.default_value(std::string{""})
+		.nargs(1);
+
+	_argParser->add_argument("--dumpscript")
+		.help("Dump script to terminal. Application will terminate after")
+		.default_value(false)
+		.implicit_value(true)
+		.nargs(0);
+
+	_argParser->add_argument("--inputdirs")
+		.help("Path to the input directories (separated by semicolon) that will be recursively fed into SkeletonReflect")
+		.default_value(std::string{ "" })
+		.nargs(1);
+
+	_argParser->add_argument("--outputdir")
+		.help("")
+		.default_value(std::string{ "" })
 		.nargs(1);
 }
 
