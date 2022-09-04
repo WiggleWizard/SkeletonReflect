@@ -5,9 +5,17 @@
 namespace fs = std::filesystem;
 
 
+NAMESPACE_BEGIN(SkeletonReflect)
+
 void SourceVisitor::Scan(bool bRecursive)
 {
 	Scan(bRecursive, _rootPath.c_str());
+	_lastVisit = eastl::chrono::system_clock::now();
+}
+
+bool SourceVisitor::HasBeenScanned() const
+{
+	return _lastVisit > eastl::chrono::time_point<eastl::chrono::system_clock>();
 }
 
 void SourceVisitor::Scan(bool bRecursive, const std::filesystem::path& dirPath)
@@ -29,9 +37,11 @@ void SourceVisitor::Scan(bool bRecursive, const std::filesystem::path& dirPath)
 			continue;
 		}
 
-		_sourceFiles.push_back({ filePath });
-		SourceFile& newSourceFile = _sourceFiles[_sourceFiles.size() - 1];
+		eastl::shared_ptr<SourceFile> newSourceFile = eastl::make_shared<SourceFile>(filePath);
+		_sourceFiles.push_back(newSourceFile);
 
-		newSourceFile.ScanTokens();
+		newSourceFile->ScanTokens();
 	}
 }
+
+NAMESPACE_END

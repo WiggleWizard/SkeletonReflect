@@ -3,6 +3,8 @@
 #include "TokenType.h"
 #include "Token.h"
 
+#include "CommonDefs.h"
+
 #include <EASTL/string.h>
 #include <EASTL/list.h>
 #include <EASTL/hash_map.h>
@@ -10,21 +12,22 @@
 #include "Logging.h"
 
 
+NAMESPACE_BEGIN(SkeletonReflect)
+
 class Scanner
 {
+	static LOG_DECL(logger);
+
 	typedef eastl_size_t Cursor;
 
-	static std::shared_ptr<spdlog::logger> logger;
-
+	/**
+	 * \brief Reserved keywords
+	 */
 	static eastl::hash_map<eastl::string, TokenType> keywords;
 
 public:
 
-	Scanner() {};
-
-	Scanner(const eastl::string& source)
-		: _source(source)
-	{}
+	Scanner(const eastl::string& source);
 
 	void SetSource(const eastl::string& source)
 	{
@@ -121,8 +124,15 @@ private:
 	eastl::string _source{};
 	eastl::list<Token> _tokens{};
 
+	/**
+	 * \brief Custom keywords from a script engine
+	 */
+	eastl::hash_map<eastl::string, int> _customKeywords{};
+
 	// Cursor trackers
 	Cursor _cursor_start = 0;
 	Cursor _cursor_current = 0;
 	int _line = 1;
 };
+
+NAMESPACE_END

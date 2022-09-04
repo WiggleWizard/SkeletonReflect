@@ -3,7 +3,7 @@
 #include "TokenType.h"
 
 #include <EASTL/string.h>
-#include <EASTL/variant.h>
+#include <EASTL/any.h>
 
 #include <spdlog/fmt/fmt.h>
 

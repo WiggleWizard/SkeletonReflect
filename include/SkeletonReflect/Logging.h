@@ -5,9 +5,12 @@
 
 #include <memory>
 
-#define LOG_DECL(variableName, category) \
+#define LOG_DECL(variableName) \
+	std::shared_ptr<spdlog::logger> variableName
+#define LOG_IMPL(c, variableName, category) \
+	std::shared_ptr<spdlog::logger> c::variableName = spdlog::stdout_color_mt(#category)
+#define LOGGER(variableName, category) \
 	static std::shared_ptr<spdlog::logger> variableName = spdlog::stdout_color_mt(#category)
-#define LOG_CATEGORY_IMPL(category)
 
 
 template<>

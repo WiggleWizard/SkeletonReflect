@@ -7,3 +7,9 @@
 [submodule "thirdparty/spdlog/repo"]
 	path = thirdparty/spdlog/repo
 	url = https://github.com/gabime/spdlog.git
+[submodule "thirdparty/wren/repo"]
+	path = thirdparty/wren/repo
+	url = https://github.com/wren-lang/wren.git
+[submodule "thirdparty/argparse/repo"]
+	path = thirdparty/argparse/repo
+	url = https://github.com/p-ranav/argparse.git

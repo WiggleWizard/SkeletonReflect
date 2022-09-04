@@ -1,25 +1,38 @@
 #include "SkeletonReflect/Scanner.h"
 
+#include "SkeletonReflectApp.h"
+#include "SkeletonReflect/ScriptEngine.h"
 
-std::shared_ptr<spdlog::logger> Scanner::logger = spdlog::stdout_color_mt("Scanner");
+NAMESPACE_BEGIN(SkeletonReflect)
+
+LOG_IMPL(Scanner, logger, Scanner);
 
 eastl::hash_map<eastl::string, TokenType> Scanner::keywords = {
-	{ "class", CLASS },
-	{ "const", CONST },
-	{ "static", STATIC },
+	{ "class", K_CLASS },
+	{ "const", K_CONST },
+	{ "static", K_STATIC },
 
-	{ "public", PUBLIC },
-	{ "private", PRIVATE },
+	{ "public", K_PUBLIC },
+	{ "private", K_PRIVATE },
 
-	{ "void", VOID },
-	{ "int", INT },
-	{ "bool", BOOL },
+	{ "void", T_VOID },
+	{ "int", T_INT },
+	{ "bool", T_BOOL },
 
 	{ "SKCLASS", MACRO_CLASS_DECL },
 	{ "SK_GENERATED_BODY", MACRO_GEN_BODY },
 	{ "SKPROPERTY", MACRO_FUNC_DECL },
 	{ "SKFUNCTION", MACRO_FUNC_DECL}
 };
+
+
+Scanner::Scanner(const eastl::string& source)
+	: _source(source)
+{
+	// Get custom keywords from the script engine
+	ea::shared_ptr<ScriptEngine> scriptEngine = Application::Instance().GetScriptEngine();
+	_customKeywords = scriptEngine->GetUserDefinedTokenTypes();
+}
 
 void Scanner::ScanTokens()
 {
@@ -153,3 +166,5 @@ void Scanner::ScanIdentifier()
 
 	AddToken(type);
 }
+
+NAMESPACE_END

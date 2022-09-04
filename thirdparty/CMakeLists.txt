@@ -9,3 +9,12 @@ add_subdirectory(EASTL/repo)
 
 # spdlog
 add_subdirectory(spdlog/repo)
+
+# Wren
+add_subdirectory(wren)
+
+# SkeletonMinRes
+add_subdirectory(SkeletonMinRes/repo)
+
+# argparse
+add_subdirectory(argparse/repo)
