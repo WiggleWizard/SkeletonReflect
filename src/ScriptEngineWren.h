@@ -20,6 +20,7 @@ public:
 	void Initialize() override;
 	ea::string GetFullScript() const override;
 	ea::hash_map<ea::string, int> GetUserDefinedTokenTypes() override;
+	ea::string GenerateHeader(ea::list<Token> tokens) override;
 
 private:
 	WrenVM* _wrenVm = nullptr;

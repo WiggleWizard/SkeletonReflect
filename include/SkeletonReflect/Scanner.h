@@ -23,7 +23,7 @@ class Scanner
 	/**
 	 * \brief Reserved keywords
 	 */
-	static eastl::hash_map<eastl::string, TokenType> keywords;
+	static eastl::hash_map<eastl::string, InternalTokenType> keywords;
 
 public:
 
@@ -102,12 +102,12 @@ private:
 		return _source.at(_cursor_current + count);
 	}
 
-	void AddToken(TokenType type)
+	void AddToken(InternalTokenType type)
 	{
 		AddToken(type, "");
 	}
 
-	void AddToken(TokenType type, const eastl::string& literal)
+	void AddToken(InternalTokenType type, const eastl::string& literal)
 	{
 		eastl::string text = _source.substr(_cursor_start, _cursor_current - _cursor_start);
 		_tokens.push_back({type, text, literal, _line});

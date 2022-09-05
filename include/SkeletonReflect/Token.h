@@ -11,14 +11,14 @@
 class Token
 {
 public:
-	Token(TokenType t, const eastl::string& inLexeme, const eastl::string& inLiteral, int lineNumber)
+	Token(InternalTokenType t, const eastl::string& inLexeme, const eastl::string& inLiteral, int lineNumber)
 		: type(t)
 		, lexeme(inLexeme)
 		, literal(inLiteral)
 		, line(lineNumber)
 	{}
 
-	TokenType type;
+	InternalTokenType type;
 	eastl::string lexeme;
 	eastl::string literal;
 	int line;

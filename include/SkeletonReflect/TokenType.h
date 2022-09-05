@@ -6,7 +6,7 @@
 #include <EASTL/string.h>
 
 
-enum TokenType
+enum InternalTokenType
 {
 	// Single-character tokens
 	LEFT_PAREN, RIGHT_PAREN, LEFT_BRACE, RIGHT_BRACE,
@@ -45,7 +45,7 @@ enum TokenType
 	END_OF_FILE
 };
 
-static ea::map<ea::string, TokenType> StringToTokenTypeMap = {
+static ea::map<ea::string, InternalTokenType> StringToTokenTypeMap = {
 	{ "LEFT_PAREN", LEFT_PAREN },
 	{ "RIGHT_PAREN", RIGHT_PAREN },
 	{ "LEFT_BRACE", LEFT_BRACE },
@@ -112,5 +112,5 @@ static inline ea::map<T2, T1> ReverseMap(ea::map<T1, T2> inMap)
 	return result;
 }
 
-static ea::map<TokenType, ea::string> TokenTypeToStringMap
-	= ReverseMap<ea::string, TokenType>(StringToTokenTypeMap);
+static ea::map<InternalTokenType, ea::string> TokenTypeToStringMap
+	= ReverseMap<ea::string, InternalTokenType>(StringToTokenTypeMap);

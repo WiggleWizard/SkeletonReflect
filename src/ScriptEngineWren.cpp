@@ -133,4 +133,9 @@ ea::hash_map<ea::string, int> ScriptEngineWren::GetUserDefinedTokenTypes()
 	return customTokenTypes;
 }
 
+ea::string ScriptEngineWren::GenerateHeader(ea::list<Token> tokens)
+{
+	return "";
+}
+
 NAMESPACE_END

@@ -7,7 +7,7 @@ NAMESPACE_BEGIN(SkeletonReflect)
 
 LOG_IMPL(Scanner, logger, Scanner);
 
-eastl::hash_map<eastl::string, TokenType> Scanner::keywords = {
+eastl::hash_map<eastl::string, InternalTokenType> Scanner::keywords = {
 	{ "class", K_CLASS },
 	{ "const", K_CONST },
 	{ "static", K_STATIC },
@@ -160,7 +160,7 @@ void Scanner::ScanIdentifier()
 		Advance();
 
 	eastl::string str = _source.substr(_cursor_start, _cursor_current - _cursor_start);
-	TokenType type = IDENTIFIER;
+	InternalTokenType type = IDENTIFIER;
 	if(keywords.count(str) > 0)
 		type = keywords[str];
 
