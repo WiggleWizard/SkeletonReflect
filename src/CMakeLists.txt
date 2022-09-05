@@ -28,4 +28,4 @@ target_link_libraries(${PROJECT_NAME}
     argparse)
 
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
-add_custom_target(NatVis SOURCES ${CMAKE_SOURCE_DIR}/thirdparty/EASTL/repo/doc/EASTL.natvis)
+add_custom_target(NatVis SOURCES ${EASTL_SOURCE_DIR}/doc/EASTL.natvis)

@@ -31,7 +31,11 @@ CPMAddPackage(
     VERSION 1.10.0)
 
 # Wren
-add_subdirectory(wren)
+CPMAddPackage(
+    NAME wren
+    GITHUB_REPOSITORY wren-lang/wren
+    GIT_TAG 0.4.0)
+include("${CMAKE_SOURCE_DIR}/cmake/wren.cmake")
 
 # SkeletonMinRes
 CPMAddPackage(
