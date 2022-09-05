@@ -1,5 +1,3 @@
-
-
 var CK_COOL_CUSTOM_MACRO = 5
 var CK_COOL_CUSTOM_MACRO2 = 6
 

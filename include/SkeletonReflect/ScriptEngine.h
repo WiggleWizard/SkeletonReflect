@@ -1,9 +1,11 @@
 #pragma once
 
 #include "CommonDefs.h"
+#include "Token.h"
 
 #include <EASTL/hash_map.h>
 #include <EASTL/string.h>
+#include <EASTL/list.h>
 
 
 NAMESPACE_BEGIN(SkeletonReflect)
@@ -22,6 +24,8 @@ public:
 	 * \brief Called when application first attempts to scan
 	 */
 	virtual ea::hash_map<ea::string, int> GetUserDefinedTokenTypes() = 0;
+
+	virtual ea::string GenerateHeader(ea::list<Token> tokens) = 0;
 };
 
 NAMESPACE_END

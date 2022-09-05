@@ -83,7 +83,7 @@ ea::string ScriptEngineWren::GetFullScript() const
 	{
 		finalScript += fmt::format("var TOK_{} = {}\n", element.first, element.second).c_str();
 	}
-	finalScript += "// ==================================================";
+	finalScript += "// ==================================================\n\n";
 
 	// Ask the application for its config so we can figure out what script to load
 	const ApplicationConfig& appConfig = Application::Instance().GetConfig();
